@@ -1,0 +1,21 @@
+{
+  "name": "answers",
+  "version": "1.0.0",
+  "main": "01-intro.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon prompter.js",
+    "start": "node prompter.js"
+  },
+  "author": "Iris M.",
+  "license": "ISC",
+  "description": "For CTD",
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "loadash": "^1.0.0",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
