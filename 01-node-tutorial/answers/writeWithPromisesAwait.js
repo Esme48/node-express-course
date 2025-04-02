@@ -2,11 +2,12 @@ const { writeFile, readFile} = require('fs').promises
 
 const writer = async() =>{
     try{
-    const first = await readFile('./content/first.txt', 'utf8')
-    const second = await readFile('./content/second.txt', 'utf8')
-    const third = await readFile('./content/result-sync.txt', 'utf8')
-    await writeFile('./content/temp.txt', `This is the response : ${first} ${second} ${third}`)
-    console.log(first, second, third) //Wainting for promise to be resolved
+        await writeFile('./content/temp.txt', 'This is the first lines component 1\n','utf8')
+        await writeFile('./content/temp.txt', 'This is the second lines component 2\n', {flag: 'a'})
+        await writeFile('./content/temp.txt', 'This is the third lines component 3\n', {flag: 'a'})
+        //await writeFile('./content/temp.txt', `This is the response : ${first} ${second} ${third}`)
+        //console.log(first, second, third) //Wainting for promise to be resolved
+        //await makes sure that everything is wrritten sequentally 
     } catch (error){
         console.log(error)
     }
