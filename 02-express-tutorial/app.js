@@ -16,7 +16,7 @@ app.use(express.static('./public'))
    // res.sendFile(path.resolve(__dirname, './navbar-app/index.html'))
  //})
 
-app.get('/api/users', (req, res) => {
+app.get('/api/products', (req, res) => {
     res.json(products)
 })
 
@@ -29,8 +29,8 @@ app.get("/api/v1/products/:productID", (req, res) => {
     const product = products.find((p) => p.id === idToFind)
 
     if(!product){
-        return res.status(404).json({message: "This Product Was Not Found",
-           status: true
+        return res.status(404).json({message: "That Product Was Not Found",
+           //status: true
         })
     }
     return res.json(product)
@@ -49,7 +49,7 @@ app.get("/api/v1/query", (req, res) => {
         sortedProducts = sortedProducts.slice(0 , Number(limit))
     }
     if(sortedProducts.length < 1){
-        res.status(200).send(' We Do Not Have A Product With That Match ')
+        return res.status(404).send(' We Do Not Have a Product That Is a Match ')
      //res.send('Hello World')
     }
     res.status(200).json(sortedProducts)
