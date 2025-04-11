@@ -1,2 +1,4 @@
 /node_modules
+authorize.js
+logger.js
 .env
