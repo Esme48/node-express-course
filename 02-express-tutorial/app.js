@@ -17,6 +17,7 @@ const logger = (req, res, next) =>{
 
 const { products} = require('./data')
 
+app.use(logger)
 app.use(express.static('./public'))
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())
@@ -24,7 +25,6 @@ app.use("/api/v1/people", peopleRouter)
     /// Middleware Component
     //app.use(morgan('tiny'))
     //app.use(logger, authorize)
-app.use(logger)
 
 app.get('/', (req, res)=>{
     res.send('Home')
