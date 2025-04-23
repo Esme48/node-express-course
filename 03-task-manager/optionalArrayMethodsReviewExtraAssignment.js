@@ -125,6 +125,7 @@ object.behavior()
 // Each challenge will be related to this array of names. It will pose a
 // problem related to these names, and then implement the solution. The
 // challenges are:
+
 //
 // - Create a new array with only each person's last name
 // - Filter names that don't match the format "<first> <last>"
