@@ -1,0 +1,11 @@
+1.The middleware function was created because try/catch bocks were being used for error handling.
+To alleviate the code in the controllers, a route was created that would assist in passing the errors.
+2.
+const getTask = asyncWrapper(async (req, res, next) => {  
+  const { id: taskID } = req.params;  
+  const task = await Task.findOne({ _id: taskID });  
+  if (!task) {  
+    return next(createCustomError(`No task with id : ${taskID}', 404))
+  }  
+  res.status(200).json({ task });  
+});
