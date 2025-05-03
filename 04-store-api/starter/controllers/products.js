@@ -30,16 +30,26 @@ const getAllProducts = async (req, res) => {
             '<=':'$lte',
         }
         const regEx = /\b(<|>|>=|=|<|<=)\b/g
-        let filters = numericFilters.replace(regEx, (match)=> `-${operatorMap[match]}-`)
-        console.log(filters)
+        let filters = numericFilters.replace(
+            regEx, 
+            (match) => `-${operatorMap[match]}-`
+        )
+        const options = ['price', 'rating'];
+        filters = filters.split(',').forEach((item)=>{
+            const [field, operator, value] = item.split('-')
+            if(options.includes(field)){
+                queryObject[field] = {[operator]: Number(value)}
+            }
+        })
     }
+
     console.log(queryObject)
     let result = Product.find(queryObject)
     if (sort) {
         const sortList = sort.split(',').join(' ')
         result = result.sort(sortList)
     } else {
-        result = result.sort(createdAt)
+        result = result.sort("createdAt")
     }
     if (fields) {
         const fieldsList = fields.split(',').join(' ')
@@ -50,8 +60,9 @@ const getAllProducts = async (req, res) => {
     const skip = (page - 1) * limit
 
     result = result.skip(skip).limit(limit)
+
     const products = await result
-    res.status(200).json({products, nbHits:products.length})
+    res.status(200).json({products, nbHits: products.length})
 }
 
 module.exports ={
